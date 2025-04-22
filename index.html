@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SintiénTico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Megrim&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0f0f0f;
+      --text-color: #e0e0e0;
+      --accent-color: #00ffe0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .logo {
+      font-family: 'Megrim', cursive;
+      font-size: 2rem;
+      color: var(--accent-color);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .menu {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem;
+      border-radius: 0 0 8px 8px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .menu a {
+      font-family: 'Megrim', cursive;
+      font-size: 1rem;
+      color: var(--accent-color);
+      text-decoration: none;
+      display: block;
+      margin: 0.5rem 0;
+    }
+
+    .instagrams {
+      display: none;
+      font-family: 'Megrim', cursive;
+      font-size: 1rem;
+      gap: 1rem;
+    }
+
+    .instagrams a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #background {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
+      background-size: 20px 20px;
+      animation: moveBackground 20s linear infinite;
+    }
+
+    @keyframes moveBackground {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 100px; }
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      min-height: 100vh;
+      padding: 2rem;
+      gap: 2rem;
+    }
+
+    .main {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .art-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .art-section img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 255, 224, 0.2);
+    }
+
+    .reflection {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .general-reflection {
+      position: sticky;
+      top: 2rem;
+      background-color: rgba(255, 255, 255, 0.02);
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 255, 224, 0.1);
+      height: fit-content;
+    }
+
+    @media screen and (max-width: 768px) {
+      .container {
+        display: block;
+        padding: 1rem;
+      }
+
+      .art-section {
+        grid-template-columns: 1fr;
+      }
+
+      .reflection {
+        max-height: 3.5em;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .reflection.expanded {
+        max-height: none;
+      }
+
+      .reflection::after {
+        content: '...';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: var(--bg-color);
+        padding-left: 10px;
+        color: var(--accent-color);
+      }
+
+      .general-reflection {
+        margin-top: 3rem;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .menu {
+        display: none;
+      }
+
+      .menu.active {
+        display: block;
+      }
+
+      .instagrams {
+        display: none;
+      }
+    }
+
+    @media screen and (min-width: 769px) {
+      .instagrams {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="background"></div>
+
+  <header>
+    <div class="logo">Sintiéntico</div>
+    <div class="instagrams">
+      <a href="https://instagram.com/_quelar" target="_blank">@_quelar</a>
+      <a href="https://instagram.com/vroto_" target="_blank">@vroto_</a>
+    </div>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="menu" id="menu">
+      <a href="https://instagram.com/_quelar" target="_blank">@_quelar</a>
+      <a href="https://instagram.com/vroto_" target="_blank">@vroto_</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="main">
+      <div class="art-section">
+        <img src="img/humano-tecnologia.jpg" alt="Humano y Tecnología">
+        <div class="reflection">Reflexión sobre la relación entre el ser humano y la tecnología. ¿Qué significa ser humano en una era de algoritmos, IA y dispositivos omnipresentes?</div>
+      </div>
+
+      <div class="art-section">
+        <img src="img/naturaleza-tecnologia.jpg" alt="Naturaleza y Tecnología">
+        <div class="reflection">Reflexión sobre la relación entre naturaleza y tecnología. Lo orgánico y lo artificial se entrelazan, pero ¿a qué costo para el ecosistema?</div>
+      </div>
+
+      <div class="art-section">
+        <img src="img/sociedad-tecnologia.jpg" alt="Sociedad y Tecnología">
+        <div class="reflection">Reflexión sobre la sociedad y la tecnología. Redes que nos unen, algoritmos que nos polarizan: ¿Quién controla a quién?</div>
+      </div>
+    </div>
+
+    <div class="general-reflection">
+      <h2>Reflexión General</h2>
+      <p>
+        Sintiéntico nace como una exploración crítica de los cruces entre lo vivo y lo sintético. En un mundo cada vez más codificado, estas obras invitan a pensar desde la sensibilidad y la colaboración, no como resistencia a la tecnología, sino como forma de reimaginarla.
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Sintiéntico
+  </footer>
+
+  <script>
+    document.querySelectorAll('.reflection').forEach((el) => {
+      el.addEventListener('click', () => {
+        el.classList.toggle('expanded');
+      });
+    });
+
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+      toggle.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
+
