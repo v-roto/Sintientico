@@ -2,14 +2,13 @@
 <html lang="es">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3K8EDM2VYX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-3K8EDM2VYX');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3K8EDM2VYX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3K8EDM2VYX');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SintiénTico</title>
@@ -136,8 +135,9 @@
 
     .container {
       display: grid;
-      grid-template-columns: 3fr 1fr;
-      min-height: 100vh;
+      grid-template-columns: 1fr 300px;
+      max-width: 1400px;
+      margin: 0 auto;
       padding: 2rem;
       gap: 2rem;
     }
@@ -167,13 +167,21 @@
     }
 
     .general-reflection {
-      position: sticky;
-      top: 1rem;
       background-color: rgba(255, 255, 255, 0.02);
       padding: 1rem;
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(0, 255, 224, 0.1);
-      width: 4rem;
+    }
+
+    .desktop-visible {
+      position: sticky;
+      top: 1rem;
+      width: 100%;
+    }
+
+    .mobile-visible {
+      display: none;
+      margin: 1rem;
     }
 
     @media screen and (max-width: 768px) {
@@ -207,8 +215,12 @@
         color: var(--accent-color);
       }
 
-      .general-reflection {
-        margin-top: 1rem;
+      .general-reflection.desktop-visible {
+        display: none;
+      }
+
+      .general-reflection.mobile-visible {
+        display: block;
       }
 
       .menu-toggle {
@@ -255,14 +267,20 @@
     </div>
   </header>
 
+  <!-- Reflexión general para móvil -->
+  <div class="general-reflection mobile-visible">
+    <p>
+      Sintiéntico nace como una exploración crítica de los cruces entre lo Sintiente y lo sintético. En un mundo cada vez más codificado, estas obras invitan a pensar desde la sensibilidad y la colaboración, no como resistencia a la tecnología, sino como forma de reimaginarla.
+    </p>
+  </div>
+
   <div class="container">
-  <div class="general-reflection">
+    <!-- Reflexión general para escritorio -->
+    <div class="general-reflection desktop-visible">
       <p>
         Sintiéntico nace como una exploración crítica de los cruces entre lo Sintiente y lo sintético. En un mundo cada vez más codificado, estas obras invitan a pensar desde la sensibilidad y la colaboración, no como resistencia a la tecnología, sino como forma de reimaginarla.
       </p>
     </div>
-
-
   
     <div class="main">
       <div class="art-section">
