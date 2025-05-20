@@ -166,23 +166,16 @@
       line-height: 1.6;
     }
 
-    .general-reflection {
-      background-color: rgba(255, 255, 255, 0.02);
-      padding: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 255, 224, 0.1);
-    }
-
-    .desktop-visible {
-      position: sticky;
-      top: 1rem;
-      width: 100%;
-    }
-
-    .mobile-visible {
-      display: none;
-      margin: 1rem;
-    }
+    .general-reflection.universal {
+  background-color: rgba(255, 255, 255, 0.02);
+  padding: 1rem 2rem;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 0 20px rgba(0, 255, 224, 0.1);
+  margin-bottom: 2rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
     @media screen and (max-width: 768px) {
       .container {
@@ -268,19 +261,13 @@
   </header>
 
   <!-- Reflexión general para móvil -->
-  <div class="general-reflection mobile-visible">
+  <div class="general-reflection universal">
     <p>
       Sintiéntico nace como una exploración crítica de los cruces entre lo Sintiente y lo sintético. En un mundo cada vez más codificado, estas obras invitan a pensar desde la sensibilidad y la colaboración, no como resistencia a la tecnología, sino como forma de reimaginarla.
     </p>
   </div>
 
   <div class="container">
-    <!-- Reflexión general para escritorio -->
-    <div class="general-reflection desktop-visible">
-      <p>
-        Sintiéntico nace como una exploración crítica de los cruces entre lo Sintiente y lo sintético. En un mundo cada vez más codificado, estas obras invitan a pensar desde la sensibilidad y la colaboración, no como resistencia a la tecnología, sino como forma de reimaginarla.
-      </p>
-    </div>
   
     <div class="main">
       <div class="art-section">
